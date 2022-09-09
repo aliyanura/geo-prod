@@ -13,9 +13,9 @@ services:
     env_file:
       - .env
     volumes:
-      - .:/opt/services/geo-prod
-      - ./static/static_data:/opt/services/geo-prod/static
-      - ./static/media_data:/opt/services/geo-prod/back_media
+      - .:/geo-prod
+      - ./static/static_data:/geo-prod/static
+      - ./static/media_data:/geo-prod/back_media
     networks:
       - db_network
     depends_on:
@@ -33,10 +33,10 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - /var/lib/postgresql/data
     environment:
-      - POSTGRES_PASSWORD='geopass'
-      - POSTGRES_DB='geodjango'
-      - PGPORT='localhost'
-      - POSTGRES_USER='geo'
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - PGPORT=${DB_PORT}
+      - POSTGRES_USER=${DB_USER}
 
 volumes:
   postgres_data:
