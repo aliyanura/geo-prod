@@ -17,7 +17,6 @@ services:
       - ./static/static_data:/opt/services/geo-prod/static
       - ./static/media_data:/opt/services/geo-prod/back_media
     networks:
-      - nginx_network
       - db_network
     depends_on:
       - db
